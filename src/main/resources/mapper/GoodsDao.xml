@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gebilaoyi.j2ee.lesson9.dao.GoodsDao">
+    <resultMap id="GoodsResult" type="com.gebilaoyi.j2ee.lesson9.entity.GoodsEntity">
+    </resultMap>
+
+    <select id="findList"
+            resultMap="GoodsResult">
+        SELECT *
+        FROM goods
+        <if test="selectTypeId != -100 and selectTypeId > 0">
+            WHERE goods_type_id=#{selectTypeId}
+        </if>
+        order by id asc limit #{offset}, #{pageSize}
+    </select>
+</mapper>
